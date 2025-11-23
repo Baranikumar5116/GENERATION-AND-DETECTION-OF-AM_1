@@ -83,13 +83,56 @@ Note: Keep all the switch faults in off position
 <img width="600" height="800" alt="image" src="https://github.com/user-attachments/assets/7bc77926-9c2a-42c6-994b-6c67433b11d2" />
 
 ## PROGRAM:
- 
+'''
+Am = 7;
+Ac = 14;
+fm = 653;
+fc = 6530;
+fs = 653000;
+t = 0:1/fs:2/fm;
+m = Am * cos(2*3.14*fm*t);
+c = Ac * cos(2*3.14*fc*t);
+s = (Ac + m) .* cos(2*3.14*fc*t);
+envelope_signal = abs(hilbert(s));
+demod = envelope_signal - Ac;
+subplot(4,1,1);
+plot(t, m, 'b');
+title('Message Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+subplot(4,1,2);
+plot(t, c, 'r');
+title('Carrier Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+subplot(4,1,3);
+plot(t, s, 'k');
+title('AM Modulated Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+subplot(4,1,4);
+plot(t, demod, 'g');
+title('Demodulated Signal');
+xlabel('Time (s)');
+ylabel('Amplitude');
+'''
+
 ## TABULATION:
+
+<img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/b8d3d201-1925-408e-b1c5-5f460ad5e13b" />
 
 ## CALCULATION:
 
 
+<img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/01a9ab89-bd1e-473e-9e63-0a51129aa5f3" />
+
 
 ## OUTPUT:
 
+<img width="878" height="748" alt="image" src="https://github.com/user-attachments/assets/076fbb99-4fb7-4763-977c-aae1b756a292" />
+
 ## RESULT:
+Thus the amplitude modulation and demodulation is experimentally done and the output is verified.
